@@ -1,3 +1,10 @@
+####
+#This is an incorrect solution for finding if a synchronizing
+#word for a dfa exists. It attempts to use an adjacency matrix
+#as a tool for determining if all nodes can reach all other nodes.
+#This was written before I knew how to define the problem.
+####
+
 import random
 def answer(subway):
     printAdjacency(subway)

@@ -1,3 +1,16 @@
+####
+#This program is an INCORRECT solution for how many valid
+#games there are with turns t and board size n, where the game board
+#is a line of squares, a player starts on the left side, each
+#turn a player can move left or right one square, and once on
+#the end square the player cannot leave.
+#
+#It attempts to use the lowest layer of a binary tree as a means for
+#tracking all paths through the game simultaneously. It could probably be
+#fixed.
+####
+
+#the main function to call
 def answer(t, n):
     paths = []
     state = [0, 1]

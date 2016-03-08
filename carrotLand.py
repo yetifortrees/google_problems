@@ -1,3 +1,12 @@
+####
+#This program is an optimized solution for determining how many points on a grid
+#exist within a triangle. It uses picks theorem, which is:
+#
+#           A = i + b/2 - 1
+#
+#where A is the area of the triangle, b is the number of points on the boundary, and i
+#is the number of internal points
+####
 import numpy
 from fractions import gcd
 def answer(vertices):

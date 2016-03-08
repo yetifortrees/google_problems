@@ -1,5 +1,10 @@
+####
+#This is an optimized solution for determining if a DFA has a synchronizing word.
+#It uses David Eppstein's method as defined in his paper "Reset sequences for monotonic autonama"
+####
 import math
 from collections import deque
+#the main method to call
 def answer(subway):
     #check if the first subway is good. If it is return -1
     if checkSubway(subway):
@@ -31,14 +36,19 @@ def BFS(tree, start, solved):
         current = toVisit.pop()
         #look in our graph at current node
         for node in tree[current]:
+            #if its a singleton node or we have previously solved it
             if "," not in node or node in solved:
+                #add everything weve seen to solved
                 for i in seen:
                     solved.add(i)
                 return True
             if node not in seen:
                 seen.add(node)
                 toVisit.append(node)
-    return False   
+    return False
+#a method to remove a state from the machine given some rules
+#subway - the machine
+#toRemove - the station/state to remove
 def removeSubway(subway, toRemove):
     newSub = []
     for i in range(0, len(subway)):
@@ -63,6 +73,7 @@ def removeSubway(subway, toRemove):
     #    print(i)
     #print("----")
     return newSub
+#This method determines if a subway system has a synchronizing sequence
 def checkSubway(subway):
     powerSub = {}
     #for i in range(0, len(subway)):
@@ -70,6 +81,7 @@ def checkSubway(subway):
     #    for j in subway[i]:
     #        paths.add(str(j))
     #    powerSub[str(i)] = paths
+    #create a power system of all pairs of stations and their connections
     for i in range(0, len(subway)):
         for j in range(i, len(subway)):
             paths = []
@@ -92,6 +104,8 @@ def checkSubway(subway):
                     powerSub[str(j) + "," + str(i)] = set(paths)
             else:
                 powerSub[str(i)] = set(paths)
+    #check if all pairs have a path to come together
+    #if they do then there is a synchronizing sequence
     allPairs = True
     #print(powerSub)
     solved = set()
@@ -100,6 +114,7 @@ def checkSubway(subway):
             if not BFS(powerSub, key, solved):
                 allPairs = False
     return allPairs
+#testing
 print(answer([[2, 1], [2, 0], [3, 1], [1, 0]]))
 print("----new matrices----")
 print(answer([[1, 2], [1, 1], [2, 2]]))

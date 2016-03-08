@@ -1,3 +1,7 @@
+####
+#This code recursively removes an inserted word
+#from a chunk of text to find the original text
+####
 def answer(chunk, word):
     allWords = [chunk]
     foundNew = True

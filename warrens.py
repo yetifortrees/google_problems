@@ -1,12 +1,20 @@
+####
+#This program calculates how many connected graphs exist
+#with a given number of nodes and a given number of edges
+####
 import math
+#for the decorator functions
 s = {}
 t = {}
+#the main function to call
 def answer(n,k):
     return graphWrap(n, k)
+#a decorator function to increase performance
 def graphWrap(*args):
     if args not in t:
         t[args] = graph(*args)
     return t[args]
+#the function to calculate
 def graph(n, k):
     #calc possible number of edges
     t = chooseWrap(n, 2)
@@ -22,14 +30,17 @@ def graph(n, k):
                 #get rid of everything that isn't connected
                 ret -= ni * chooseWrap(chooseWrap(n - i, 2), k - j) * answer(i, j) 
     return ret
+#a decorator function for the choose/combination function
 def chooseWrap(*args):
     if args not in s:
         s[args] = choose(*args)
     return s[args]
+#a function to calculate n choose k or n combination k
 def choose(n, k):
     if k > n:
         return 0
     return int(math.factorial(n)/(math.factorial(k) * math.factorial(n - k)))
+#testing
 print(answer(2, 1))
 print(answer(4, 3))
 print(answer(3, 2))

@@ -1,3 +1,7 @@
+####
+# This calculates the minimum number of square pads
+# to buy based on an amount of padding needed
+####
 import math
 def answer(n):
     pads = 0
