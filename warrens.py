@@ -41,13 +41,10 @@ def choose(n, k):
         return 0
     return int(math.factorial(n)/(math.factorial(k) * math.factorial(n - k)))
 #testing
-print(answer(2, 1))
-print(answer(4, 3))
-print(answer(3, 2))
-print(answer(4, 6))
+#print(answer(2, 1))
+#print(answer(4, 3))
+#print(answer(3, 2))
+#print(answer(4, 6))
 line = []
-for i in range (21, 20):
-    line = []
-    for j in range(i + 1, int((i * (i - 1)) / 2)):
-        line.append(answer(i, j))
-    print(line)
+for i in range (2, 50):
+    print(graph(i, i), ",")
